@@ -27,7 +27,7 @@ public:
     }
     //也就是向量的长度的平方
     double norm(){
-        return  std::pow(x,2) + std::pow(y,2);
+        return   std::pow(x,2) + std::pow(y,2) ;
     }
     double x,y;
 };
@@ -36,14 +36,14 @@ struct Node{
     std::vector<Node*> child;    //子节点，可以有很多
     Point position; //当前节点的位置
 };
-const int step_size = 3;
-const int max_iterations = 3000;
-const int width = 400;
-const int height = 400;
-const Point start_pos(30.0,30.0);
-const Point end_pos(363.0,363.0);
+const int step_size = 10;
+const int max_iterations = 1000;
+const int width = 40;
+const int height = 40;
+const Point start_pos(10.0,10.0);
+const Point end_pos(15.0,15.0);
 //在多大距离内可以判定为达到终点
-const double tolerance = 15.0;
+const double tolerance = 1.50;
 std::vector<Node*> nodes;
 std::vector<Node*> path;
 Node* getRandomNode(){
@@ -72,6 +72,7 @@ Point conf(const Node* node,Node* nearest){
     Point medium = to - from;
     //向量归一化，产生方向和单位长度
     medium = medium / (medium.norm());
+
     return from + medium * step_size;
 }
 int main() {
